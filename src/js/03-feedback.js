@@ -15,6 +15,9 @@ refs.form.addEventListener('submit', onFormSubmit);
 
 function onFormSubmit(e) {
   e.preventDefault();
+  if (refs.input.value === '' || refs.textarea.value === '') {
+    return alert(`Please fill in all the fields!`);
+  }
 
   const savedDatas = JSON.parse(localStorage.getItem(STORAGE_KEY));
   console.log(savedDatas);

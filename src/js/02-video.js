@@ -15,7 +15,10 @@ const currentTime = function (data) {
 const onPlay = player.on('timeupdate', throttle(currentTime, 1000));
 player
   .setCurrentTime(localStorage.getItem('videoplayer-current-time'))
-  .then(function (seconds) {})
+  .then(function (seconds) {
+    const roundedSeconds = Math.round(seconds);
+    console.log(roundedSeconds);
+  })
   .catch(function (error) {
     switch (error.name) {
       case 'RangeError':
