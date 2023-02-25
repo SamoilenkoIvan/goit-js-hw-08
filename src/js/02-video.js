@@ -6,19 +6,16 @@ const player = new Player(iframe);
 const currentTime = function (data) {
   localStorage.setItem(
     'videoplayer-current-time',
-    JSON.stringify(data.seconds)
+    Math.round(data.seconds)
   );
   let time = Number(localStorage.getItem('videoplayer-current-time'));
   console.log(time);
 };
 
-const onPlay = player.on('timeupdate', throttle(currentTime, 1000));
+player.on('timeupdate', throttle(currentTime, 1000));
 player
   .setCurrentTime(localStorage.getItem('videoplayer-current-time'))
-  .then(function (seconds) {
-    const roundedSeconds = Math.round(seconds);
-    console.log(roundedSeconds);
-  })
+  .then(function (seconds) {})
   .catch(function (error) {
     switch (error.name) {
       case 'RangeError':
